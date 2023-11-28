@@ -1,0 +1,88 @@
+<template>
+  <form @submit.prevent="submitForm">
+    <div>
+      <div>
+        <label>Beds</label>
+        <input type="text" v-model.number="form.beds" />
+        <div v-if="errors.beds">{{ errors.beds }}</div>
+      </div>
+
+      <div>
+        <label>Baths</label>
+        <input type="text" v-model.number="form.baths" />
+        <div v-if="errors.baths">{{ errors.baths }}</div>
+      </div>
+
+      <div>
+        <label>Area</label>
+        <input type="text" v-model.number="form.area" />
+        <div v-if="errors.area">{{ errors.area }}</div>
+      </div>
+
+      <div>
+        <label>City</label>
+        <input type="text" v-model="form.city" />
+        <div v-if="errors.city">{{ errors.city }}</div>
+      </div>
+
+      <div>
+        <label>Post Code</label>
+        <input type="text" v-model="form.code" />
+        <div v-if="errors.code">{{ errors.code }}</div>
+      </div>
+
+      <div>
+        <label>Street</label>
+        <input type="text" v-model="form.street" />
+        <div v-if="errors.street">{{ errors.street }}</div>
+      </div>
+
+      <div>
+        <label>Street Nr</label>
+        <input type="text" v-model="form.street_no" />
+        <div v-if="errors.street_no">{{ errors.street_no }}</div>
+      </div>
+
+      <div>
+        <label>Price</label>
+        <input type="text" v-model.number="form.price" />
+        <div v-if="errors.price">{{ errors.price }}</div>
+      </div>
+
+      <div>
+        <button type="submit">Create</button>
+      </div>
+    </div>
+  </form>
+</template>
+
+  <script setup>
+import { useForm } from "@inertiajs/vue3";
+
+defineProps({
+  errors: Object,
+});
+
+const form = useForm({
+  beds: 0,
+  baths: 0,
+  city: null,
+  area: 0,
+  street: null,
+  street_no: null,
+  code: null,
+  price: 0,
+});
+
+const submitForm = () => form.post("/listings");
+</script>
+  
+  <style scoped>
+label {
+  margin-right: 2em;
+}
+
+div {
+  padding: 2px;
+}
+</style>
