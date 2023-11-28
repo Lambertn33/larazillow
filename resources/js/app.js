@@ -1,8 +1,12 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import MainLayout from './Pages/MainLayout.vue'
+import '../css/app.css'
 
 createInertiaApp({
+  progress: {
+    color: '#29d',
+  },
   resolve: name => {
     const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
     let page = pages[`./Pages/${name}.vue`]
