@@ -7,9 +7,9 @@
       </div>
       <ListingSpace :listing="listing" class="text-lg" />
     </Link>
-    <div>
-      <Link :href="`/listings/${listing.id}/edit`">Edit</Link>
-      <Link :href="`/listings/${listing.id}`" method="DELETE">Delete</Link>
+    <div class="w-full justify-between flex">
+      <Link :href="`/listings/${listing.id}/edit`" class="text-yellow-600 font-bold">Edit</Link>
+      <Link :href="`/listings/${listing.id}`" method="DELETE" as="button" class="text-green-700 font-bold">Delete</Link>
     </div>
   </div>
 </template>

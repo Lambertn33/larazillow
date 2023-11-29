@@ -116,9 +116,9 @@
       <div class="col-span-6">
         <button
           type="submit"
-          class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md"
+          class="bg-green-600 hover:bg-green-500 text-white font-medium p-2 rounded-md"
         >
-          Create
+          Update
         </button>
       </div>
     </div>

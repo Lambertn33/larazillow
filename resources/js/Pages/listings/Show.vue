@@ -44,7 +44,7 @@
 </template>
   
   <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import ListingSpace from "../../components/ListingSpace.vue";
 import ListingPrice from "../../components/ListingPrice.vue";
 import Box from "../../components/UI/Box.vue";
