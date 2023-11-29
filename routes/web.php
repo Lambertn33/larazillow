@@ -20,4 +20,5 @@ Route::resource('listings', ListingsController::class);
 Route::controller(AuthController::class)->group(function() {
     Route::get('/login', 'create');
     Route::post('/login', 'store');
+    Route::delete('/logout', 'destroy');
 });
