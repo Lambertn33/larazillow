@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingsController;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::controller(IndexController::class)->group(function() {
-//     Route::get('/', 'index');
-//     Route::get('/show', 'show');
-// });
-
 Route::resource('listings', ListingsController::class);
+Route::controller(AuthController::class)->group(function() {
+    Route::get('/login', 'create');
+    Route::post('/login', 'store');
+});
