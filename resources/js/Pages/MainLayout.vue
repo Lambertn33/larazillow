@@ -26,8 +26,9 @@
           </Link>
         </div>
         <div v-else>
-          <div>
+          <div class="flex gap-4 items-center">
             <Link href="/login">Sign In</Link>
+            <Link href="/account/create">Sign up</Link>
           </div>
         </div>
       </nav>

@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/', function() {
+return redirect('/listings');
+});
 Route::resource('listings', ListingsController::class);
+Route::resource('account', AccountController::class);
 Route::controller(AuthController::class)->group(function() {
     Route::get('/login', 'create')->name('login');
     Route::post('/login', 'store');
