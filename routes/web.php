@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('listings', ListingsController::class);
 Route::controller(AuthController::class)->group(function() {
-    Route::get('/login', 'create');
+    Route::get('/login', 'create')->name('login');
     Route::post('/login', 'store');
     Route::delete('/logout', 'destroy');
 });
