@@ -30,13 +30,11 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::make($request->validate([
+        $user = User::create($request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:4|max:9|confirmed'
         ]));
-        $user->password = Hash::make($user->password);
-        $user->save();
         Auth::login($user);
         return redirect()->route('listings.index')->with('success', 'user created successfully');
     }
