@@ -12,6 +12,7 @@ class ListingsController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
+        $this->authorizeResource(Listing::class, 'listings');
     }
     /**
      * Display a listing of the resource.
