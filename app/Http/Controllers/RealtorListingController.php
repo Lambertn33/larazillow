@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,5 +19,14 @@ class RealtorListingController extends Controller
         return inertia('realtor/Index', [
             'listings' => Auth::user()->listings
         ]);
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Listing $listing)
+    {
+        $listing->forceDelete();
+        return redirect()->back()->with('success', 'Listing Deleted');
     }
 }

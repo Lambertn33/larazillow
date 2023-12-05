@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/listings');
 });
-Route::resource('listings', ListingsController::class);
+Route::resource('listings', ListingsController::class)->except(['destroy']);
 Route::resource('account', AccountController::class);
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'create')->name('login');
