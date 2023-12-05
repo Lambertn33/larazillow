@@ -18,11 +18,21 @@ class ListingsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $listings = Listing::orderBy('created_at', 'asc')->paginate(10);
-        return Inertia('listings/Index', [
-            'listings' => $listings
+        $filters = $request->only(['priceFrom', 'priceTo', 'areaFrom', 'areaTo', 'baths', 'beds']);
+        $listings = Listing::orderBy('created_at', 'asc')
+            ->when($filters['priceForm'] ?? false, fn ($query, $value) => $query->where('price', '>=', $value))
+            ->when($filters['priceTo'] ?? false, fn ($query, $value) => $query->where('price', '<=', $value))
+            ->when($filters['beds'] ?? false, fn ($query, $value) => $query->where('beds', $value))
+            ->when($filters['baths'] ?? false, fn ($query, $value) => $query->where('baths', $value))
+            ->when($filters['areaForm'] ?? false, fn ($query, $value) => $query->where('areaFrom', '>=', $value))
+            ->when($filters['areaTo'] ?? false, fn ($query, $value) => $query->where('areaTo', '<=', $value))
+            ->paginate(10)->withQueryString();
+
+        return Inertia('listings/index/Index', [
+            'listings' => $listings,
+            'filters' => $filters
         ]);
     }
 

@@ -1,4 +1,5 @@
 <template>
+  <Filters :filters="filters"/>
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
     <Box v-for="listing in listings.data" :key="listing.id">
       <ListingItem :listing="listing" />
@@ -10,10 +11,12 @@
 </template>
 
 <script setup>
-import ListingItem from "../../components/ListingItem.vue";
-import Box from "../../components/UI/Box.vue";
-import Pagination from "../../components/UI/Pagination.vue";
+import Filters from "./Filters.vue";
+import ListingItem from "../../../components/ListingItem.vue";
+import Box from "../../../components/UI/Box.vue";
+import Pagination from "../../../components/UI/Pagination.vue";
 defineProps({
   listings: Object,
+  filters: Array,
 });
 </script>
