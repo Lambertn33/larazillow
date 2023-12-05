@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ListingsController extends Controller
@@ -11,15 +12,15 @@ class ListingsController extends Controller
 
     public function __construct()
     {
+        $this->authorizeResource(Listing::class, 'listing');
         $this->middleware('auth')->except(['index', 'show']);
-        $this->authorizeResource(Listing::class, 'listings');
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $listings = Listing::get();
+        $listings = Listing::orderBy('created_at', 'asc')->paginate(10);
         return Inertia('listings/Index', [
             'listings' => $listings
         ]);
