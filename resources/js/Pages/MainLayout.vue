@@ -13,9 +13,9 @@
           <Link href="/listings">Listings</Link>
         </div>
         <div v-if="user" class="flex items-center gap-2">
-          <div>
+          <Link href="/realtor/listings">
             {{ user.name }}
-          </div>
+          </Link>
           <Link
             href="/listings/create"
             class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md"
