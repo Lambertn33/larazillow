@@ -22,12 +22,7 @@ class ListingsController extends Controller
     {
         $filters = $request->only(['priceFrom', 'priceTo', 'areaFrom', 'areaTo', 'baths', 'beds']);
         $listings = Listing::orderBy('created_at', 'asc')
-            ->when($filters['priceForm'] ?? false, fn ($query, $value) => $query->where('price', '>=', $value))
-            ->when($filters['priceTo'] ?? false, fn ($query, $value) => $query->where('price', '<=', $value))
-            ->when($filters['beds'] ?? false, fn ($query, $value) => $query->where('beds', $value))
-            ->when($filters['baths'] ?? false, fn ($query, $value) => $query->where('baths', $value))
-            ->when($filters['areaForm'] ?? false, fn ($query, $value) => $query->where('areaFrom', '>=', $value))
-            ->when($filters['areaTo'] ?? false, fn ($query, $value) => $query->where('areaTo', '<=', $value))
+            ->filter($filters)
             ->paginate(10)->withQueryString();
 
         return Inertia('listings/index/Index', [

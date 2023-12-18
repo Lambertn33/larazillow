@@ -14,10 +14,14 @@ class RealtorListingController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return inertia('realtor/Index', [
-            'listings' => Auth::user()->listings
+        $filters = [
+            'deleted' => $request->boolean('deleted')
+        ];
+
+        return inertia('realtor/index/Index', [
+            'listings' => Auth::user()->listings()->withTrashed()->filter($filters)->paginate(5)
         ]);
     }
 
