@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ListingsController;
 use App\Http\Controllers\RealtorListingController;
+use App\Http\Controllers\RealtorListingImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,4 +31,5 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::prefix('realtor')->name('realtor.')->group(function () {
     Route::resource('listings', RealtorListingController::class)->only(['index', 'destroy']);
+    Route::resource('listing.images', RealtorListingImageController::class)->only(['create', 'store', 'destroy']);
 });
