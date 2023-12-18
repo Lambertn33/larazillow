@@ -4,6 +4,11 @@
       <span class="text-xl font-semibold"> Upload new files </span>
     </template>
     <form @submit.prevent="uploadFiles">
+      <div v-if="imageErrors.length" class="input-error">
+        <div v-for="(error, index) in imageErrors" :key="index">
+          {{ error }}
+        </div>
+      </div>
       <input type="file" multiple @input="addFiles" />
       <button type="submit" :disabled="!isFormValid" class="btn-outline">Upload files</button>
       <button type="reset" class="btn-outline" @click="reset">Reset</button>
@@ -57,4 +62,6 @@ router.on('progress', (event) => {
 const reset = () => form.reset("images");
 
 const isFormValid = computed(() => form.images.length);
+
+const imageErrors = computed(() => Object.values(form.errors))
 </script>
