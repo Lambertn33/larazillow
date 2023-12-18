@@ -28,7 +28,7 @@
           >
         </div>
         <div class="">
-          <Link class="btn-outline text-xs font-medium" :href="`/realtor/listing/${listing.id}/images/create`">Images</Link>
+          <Link class="btn-outline text-xs font-medium" :href="`/realtor/listing/${listing.id}/images/create`">Images ({{ listing.images_count }})</Link>
         </div>
         </div>
       </div>

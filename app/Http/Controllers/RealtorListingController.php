@@ -21,7 +21,7 @@ class RealtorListingController extends Controller
         ];
 
         return inertia('realtor/index/Index', [
-            'listings' => Auth::user()->listings()->withTrashed()->filter($filters)->paginate(5)
+            'listings' => Auth::user()->listings()->withTrashed()->withCount('images')->filter($filters)->paginate(5)
         ]);
     }
 

@@ -26,6 +26,7 @@ class RealtorListingImageController extends Controller
             ], [
                 'images.*.mimes' => 'The file should be in one of the formats: jpg, png, jpeg, webp'
             ]);
+            
             foreach ($request->file('images') as $image) {
                 $path = $image->store('images', 'public');
 
